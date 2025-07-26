@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://dj4e4qmcqp7sf"]
+
+[ext_resource type="Script" path="res://Scripts/CollisionUpdater.gd" id="1_4nxak"]
+[ext_resource type="Script" path="res://Scripts/Movement.gd" id="1_tpuiy"]
+
+[node name="Area2D" type="Area2D"]
+scale = Vector2(5, 5)
+script = ExtResource("1_tpuiy")
+movement_preset = 1
+speed = 5.0
+
+[node name="Enemy Collision" type="CollisionPolygon2D" parent="."]
+
+[node name="Enemy Shape" type="Polygon2D" parent="Enemy Collision" node_paths=PackedStringArray("polygon_2d", "collision_polygon_2d")]
+polygon = PackedVector2Array(0, -4, 7, -11, 3, 0, 7, 11, 0, 4, -7, 11, -3, 0, -7, -11)
+script = ExtResource("1_4nxak")
+polygon_2d = NodePath(".")
+collision_polygon_2d = NodePath("..")

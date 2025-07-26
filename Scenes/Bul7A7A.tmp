@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://bl3tfn52dyn13"]
+
+[ext_resource type="Script" path="res://Scripts/CollisionUpdater.gd" id="2_t6im3"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="Bullet Collision" type="CollisionPolygon2D" parent="Area2D"]
+
+[node name="Bullet Shape" type="Polygon2D" parent="Area2D" node_paths=PackedStringArray("polygon_2d", "collision_polygon_2d")]
+polygon = PackedVector2Array(10, 0, 0, -10, -10, 0, 0, 10, 10, 0)
+script = ExtResource("2_t6im3")
+polygon_2d = NodePath("")
+collision_polygon_2d = NodePath("")

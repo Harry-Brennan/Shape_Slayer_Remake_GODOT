@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=3 uid="uid://dm3fb7q6w4m3e"]
+
+[ext_resource type="Script" path="res://Scripts/Player/Player_Controller.gd" id="1_5oju5"]
+[ext_resource type="Script" path="res://Scripts/CollisionUpdater.gd" id="2_ggnwl"]
+[ext_resource type="Script" path="res://Scripts/Combat/Shoot.gd" id="3_7x1kn"]
+[ext_resource type="PackedScene" uid="uid://bl3tfn52dyn13" path="res://Scenes/Bullet.tscn" id="4_viqar"]
+
+[node name="Player Body" type="CharacterBody2D" node_paths=PackedStringArray("shooting_controller")]
+script = ExtResource("1_5oju5")
+speed = 250.0
+shooting_controller = NodePath("Player Shooting Controller")
+
+[node name="Player Collision" type="CollisionPolygon2D" parent="."]
+rotation = 1.5708
+scale = Vector2(10, 5)
+polygon = PackedVector2Array(0, 0, 2, 6, 1.7452, 4.3438, 0, -7, -2, 6)
+
+[node name="Player Shape" type="Polygon2D" parent="." node_paths=PackedStringArray("polygon_2d", "collision_polygon_2d")]
+rotation = 1.5708
+scale = Vector2(10, 5)
+polygon = PackedVector2Array(0, 0, 2, 6, 1.26736, 1.23785, 0, -7, -2, 6)
+script = ExtResource("2_ggnwl")
+polygon_2d = NodePath(".")
+collision_polygon_2d = NodePath("../Player Collision")
+
+[node name="Player Shooting Controller" type="Node2D" parent="." node_paths=PackedStringArray("shoot_cooldown_timer", "ammo_regen_timer")]
+position = Vector2(50, 0)
+script = ExtResource("3_7x1kn")
+bullet = ExtResource("4_viqar")
+shoot_cooldown_timer = NodePath("Shoot Cooldown Timer")
+ammo_regen_timer = NodePath("Ammo Regen Timer")
+
+[node name="Shoot Pos Rep" type="Polygon2D" parent="Player Shooting Controller"]
+scale = Vector2(5, 5)
+polygon = PackedVector2Array(-0.1, 0.199999, -0.5, -1.4, 0.0999999, -2.2, 0.42877, -1.32328, 0.7, -0.6)
+
+[node name="Shoot Cooldown Timer" type="Timer" parent="Player Shooting Controller"]
+process_callback = 0
+wait_time = 4.623
+one_shot = true
+
+[node name="Ammo Regen Timer" type="Timer" parent="Player Shooting Controller"]
+process_callback = 0
+one_shot = true
+
+[connection signal="player_shoot_signal" from="." to="Player Shooting Controller" method="_on_player_body_player_shoot_signal"]
+[connection signal="timeout" from="Player Shooting Controller/Shoot Cooldown Timer" to="Player Shooting Controller" method="_on_timer_timeout"]
+[connection signal="timeout" from="Player Shooting Controller/Ammo Regen Timer" to="Player Shooting Controller" method="_on_ammo_regen_timer_timeout"]
