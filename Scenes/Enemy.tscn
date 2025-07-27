@@ -1,9 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://dj4e4qmcqp7sf"]
+[gd_scene load_steps=6 format=3 uid="uid://dj4e4qmcqp7sf"]
 
 [ext_resource type="Script" path="res://Scripts/CollisionUpdater.gd" id="1_4nxak"]
+[ext_resource type="Script" path="res://Scripts/Combat/Enemy.gd" id="1_e7y5v"]
+[ext_resource type="Script" path="res://Scripts/Hurtbox.gd" id="2_v06bp"]
+[ext_resource type="Script" path="res://Scripts/Health.gd" id="3_igm5i"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s0bk4"]
 
 [node name="Enemy" type="Area2D"]
 scale = Vector2(5, 5)
+script = ExtResource("1_e7y5v")
 
 [node name="Enemy Collision" type="CollisionPolygon2D" parent="."]
 
@@ -12,3 +18,17 @@ polygon = PackedVector2Array(0, -4, 7, -11, 3, 0, 7, 11, 0, 4, -7, 11, -3, 0, -7
 script = ExtResource("1_4nxak")
 polygon_2d = NodePath(".")
 collision_polygon_2d = NodePath("..")
+
+[node name="HurtBox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("2_v06bp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource("CircleShape2D_s0bk4")
+
+[node name="Health" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3_igm5i")
+
+[connection signal="health_depleted" from="Health" to="." method="_on_health_health_depleted"]

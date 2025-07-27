@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dm3fb7q6w4m3e" path="res://Scenes/Player.tscn" id="1_r1q1o"]
 [ext_resource type="PackedScene" uid="uid://dj4e4qmcqp7sf" path="res://Scenes/Enemy.tscn" id="2_3ti6f"]
 [ext_resource type="Script" path="res://Scripts/CollisionUpdater.gd" id="3_s2t3t"]
-[ext_resource type="Script" path="res://Scripts/Camera.gd" id="4_tchuo"]
+[ext_resource type="Script" path="res://Scripts/Player/Camera.gd" id="4_tchuo"]
 
 [node name="Game" type="Node2D"]
 

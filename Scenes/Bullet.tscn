@@ -1,12 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://bl3tfn52dyn13"]
+[gd_scene load_steps=6 format=3 uid="uid://bl3tfn52dyn13"]
 
-[ext_resource type="Script" path="res://Scripts/Bullet_Movement.gd" id="1_2m36n"]
-[ext_resource type="Script" path="res://Scripts/Bullet.gd" id="1_j3h3l"]
+[ext_resource type="Script" path="res://Scripts/Combat/Bullets/Bullet.gd" id="1_mhgcf"]
 [ext_resource type="Script" path="res://Scripts/CollisionUpdater.gd" id="2_t6im3"]
+[ext_resource type="Script" path="res://Scripts/Combat/Bullets/Bullet_Movement.gd" id="3_wufac"]
+[ext_resource type="Script" path="res://Scripts/Hitbox.gd" id="4_avm2o"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vhksi"]
 
 [node name="Bullet" type="Area2D"]
 top_level = true
-script = ExtResource("1_j3h3l")
+script = ExtResource("1_mhgcf")
 
 [node name="Bullet Collision" type="CollisionPolygon2D" parent="."]
 
@@ -20,5 +23,14 @@ collision_polygon_2d = NodePath("../Bullet Collision")
 one_shot = true
 
 [node name="Bullet Movement" type="Node2D" parent="." node_paths=PackedStringArray("life_duration_timer")]
-script = ExtResource("1_2m36n")
+script = ExtResource("3_wufac")
 life_duration_timer = NodePath("../Lifetime Timer")
+
+[node name="HitBox" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("4_avm2o")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("CircleShape2D_vhksi")
