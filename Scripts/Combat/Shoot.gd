@@ -1,18 +1,20 @@
-extends Node
+extends Node 
 
 # Called when the node enters the scene tree for the first time.
-@export var bullet : PackedScene
+#@export var bullet : PackedScene
 @export var shoot_cooldown_timer : Timer
 @export var ammo_regen_timer : Timer
 
-var can_shoot : bool
+var rng = RandomNumberGenerator.new()
 
-@export var shoot_cooldown_length : float = 0.1
-var shoot_cooldown : bool = false
+var can_shoot := false
 
-var ammo : int = 10
-@export var ammo_regen_length : float = 3
-var ammo_regen_active : bool
+@export var shoot_cooldown_length := 0.1
+var shoot_cooldown := false
+
+var ammo := 10
+@export var ammo_regen_length := 3.0
+var ammo_regen_active := false
 
 func _process(delta):
 	if (!shoot_cooldown and ammo > 0):
@@ -22,7 +24,8 @@ func _process(delta):
 
 func shoot(shoot_pos : Vector2, shoot_rot : float):
 	if (can_shoot):
-		var instantiated_bullet = bullet.instantiate()
+		#var instantiated_bullet = bullet.instantiate()
+		var instantiated_bullet : Bullet =  Bullet.new_bullet(rng.randf_range(0, 100),rng.randf_range(0, 100))
 		instantiated_bullet.global_position = shoot_pos
 		instantiated_bullet.global_rotation = shoot_rot
 		add_child(instantiated_bullet)

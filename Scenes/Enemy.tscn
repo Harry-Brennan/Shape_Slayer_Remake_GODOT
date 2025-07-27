@@ -1,13 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://dj4e4qmcqp7sf"]
+[gd_scene load_steps=2 format=3 uid="uid://dj4e4qmcqp7sf"]
 
 [ext_resource type="Script" path="res://Scripts/CollisionUpdater.gd" id="1_4nxak"]
-[ext_resource type="Script" path="res://Scripts/Movement.gd" id="1_tpuiy"]
 
-[node name="Area2D" type="Area2D"]
+[node name="Enemy" type="Area2D"]
 scale = Vector2(5, 5)
-script = ExtResource("1_tpuiy")
-movement_preset = 1
-speed = 5.0
 
 [node name="Enemy Collision" type="CollisionPolygon2D" parent="."]
 

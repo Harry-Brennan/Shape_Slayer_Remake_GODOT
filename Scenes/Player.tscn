@@ -1,11 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://dm3fb7q6w4m3e"]
+[gd_scene load_steps=4 format=3 uid="uid://dm3fb7q6w4m3e"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Player_Controller.gd" id="1_5oju5"]
 [ext_resource type="Script" path="res://Scripts/CollisionUpdater.gd" id="2_ggnwl"]
 [ext_resource type="Script" path="res://Scripts/Combat/Shoot.gd" id="3_7x1kn"]
-[ext_resource type="PackedScene" uid="uid://bl3tfn52dyn13" path="res://Scenes/Bullet.tscn" id="4_viqar"]
 
 [node name="Player Body" type="CharacterBody2D" node_paths=PackedStringArray("shooting_controller")]
+motion_mode = 1
 script = ExtResource("1_5oju5")
 speed = 250.0
 shooting_controller = NodePath("Player Shooting Controller")
@@ -26,7 +26,6 @@ collision_polygon_2d = NodePath("../Player Collision")
 [node name="Player Shooting Controller" type="Node2D" parent="." node_paths=PackedStringArray("shoot_cooldown_timer", "ammo_regen_timer")]
 position = Vector2(50, 0)
 script = ExtResource("3_7x1kn")
-bullet = ExtResource("4_viqar")
 shoot_cooldown_timer = NodePath("Shoot Cooldown Timer")
 ammo_regen_timer = NodePath("Ammo Regen Timer")
 

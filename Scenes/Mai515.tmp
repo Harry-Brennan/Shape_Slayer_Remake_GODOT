@@ -8,28 +8,18 @@
 [node name="Game" type="Node2D"]
 
 [node name="Player Body" parent="." instance=ExtResource("1_r1q1o")]
-speed = 500.0
-
-[node name="Camera2D" type="Camera2D" parent="Player Body"]
-position = Vector2(0, 2)
-position_smoothing_enabled = true
-rotation_smoothing_enabled = true
-drag_horizontal_enabled = true
-drag_vertical_enabled = true
-drag_left_margin = 0.25
-drag_top_margin = 0.25
-drag_right_margin = 0.25
-drag_bottom_margin = 0.25
-script = ExtResource("4_tchuo")
 
 [node name="Enemy1" parent="." instance=ExtResource("2_3ti6f")]
 position = Vector2(-337, 122)
+speed = 0.0
 
 [node name="Enemy2" parent="." instance=ExtResource("2_3ti6f")]
 position = Vector2(229, 168)
+speed = 0.0
 
 [node name="Enemy3" parent="." instance=ExtResource("2_3ti6f")]
 position = Vector2(340, -227)
+speed = 0.0
 
 [node name="Wall 1" type="StaticBody2D" parent="."]
 position = Vector2(0, -1000)
@@ -76,3 +66,8 @@ polygon_2d = NodePath(".")
 collision_polygon_2d = NodePath("../CollisionPolygon2D")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Wall 4"]
+
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("player")]
+position = Vector2(0, 2)
+script = ExtResource("4_tchuo")
+player = NodePath("../Player Body")

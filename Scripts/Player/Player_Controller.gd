@@ -8,12 +8,17 @@ signal player_shoot_signal
 func _ready():
 	pass # Replace with function body.
 
-func get_movement_input():
+func get_movement_input(delta : float):
 	var input_direction = Input.get_vector("Left", "Right", "Up", "Down")
-	velocity = input_direction * speed
-
-func rotate_towards_cursor():
-	look_at(get_global_mouse_position())
+	velocity.x = move_toward(velocity.x,input_direction.x * speed, speed * delta)
+	velocity.y = move_toward(velocity.y,input_direction.y * speed, speed * delta)
+	
+func rotate_towards_cursor(delta : float):
+	var direction : Vector2 = (get_global_mouse_position() - global_position)
+	global_rotation = lerp_angle(global_rotation, atan2(direction.y,direction.x), delta * 10)
+	
+	
+	#look_at(get_global_mouse_position())
 
 func shoot_input():
 	if (Input.is_action_pressed("Shoot")):
@@ -21,10 +26,12 @@ func shoot_input():
 		player_shoot_signal.emit(shooting_controller.global_position, shooting_controller.global_rotation)
 
 func _physics_process(delta):
-	get_movement_input()
+	get_movement_input(delta)
 	move_and_slide()
-	rotate_towards_cursor()
+	rotate_towards_cursor(delta)
 	shoot_input()
+	
+	#print(velocity)
 
 
 

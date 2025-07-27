@@ -1,16 +1,24 @@
-[gd_scene load_steps=3 format=3 uid="uid://bl3tfn52dyn13"]
+[gd_scene load_steps=4 format=3 uid="uid://bl3tfn52dyn13"]
 
-[ext_resource type="Script" path="res://Scripts/Movement.gd" id="1_lcu0x"]
+[ext_resource type="Script" path="res://Scripts/Bullet_Movement.gd" id="1_2m36n"]
+[ext_resource type="Script" path="res://Scripts/Bullet.gd" id="1_j3h3l"]
 [ext_resource type="Script" path="res://Scripts/CollisionUpdater.gd" id="2_t6im3"]
 
-[node name="Area2D" type="Area2D"]
+[node name="Bullet" type="Area2D"]
 top_level = true
-script = ExtResource("1_lcu0x")
+script = ExtResource("1_j3h3l")
 
-[node name="Bullet Collision2" type="CollisionPolygon2D" parent="."]
+[node name="Bullet Collision" type="CollisionPolygon2D" parent="."]
 
-[node name="Bullet Shape2" type="Polygon2D" parent="." node_paths=PackedStringArray("polygon_2d", "collision_polygon_2d")]
+[node name="Bullet Shape" type="Polygon2D" parent="." node_paths=PackedStringArray("polygon_2d", "collision_polygon_2d")]
 polygon = PackedVector2Array(10, 0, 0, -10, -10, 0, 0, 10, 10, 0)
 script = ExtResource("2_t6im3")
 polygon_2d = NodePath(".")
-collision_polygon_2d = NodePath("../Bullet Collision2")
+collision_polygon_2d = NodePath("../Bullet Collision")
+
+[node name="Lifetime Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Bullet Movement" type="Node2D" parent="." node_paths=PackedStringArray("life_duration_timer")]
+script = ExtResource("1_2m36n")
+life_duration_timer = NodePath("../Lifetime Timer")
