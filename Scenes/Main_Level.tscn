@@ -12,6 +12,7 @@ speed = 500.0
 
 [node name="Camera2D" type="Camera2D" parent="Player Body"]
 position = Vector2(0, 2)
+process_callback = 0
 position_smoothing_enabled = true
 rotation_smoothing_enabled = true
 drag_horizontal_enabled = true
@@ -31,48 +32,48 @@ position = Vector2(229, 168)
 [node name="Enemy3" parent="." instance=ExtResource("2_3ti6f")]
 position = Vector2(340, -227)
 
-[node name="Wall 1" type="StaticBody2D" parent="."]
+[node name="Bullets" type="Node2D" parent="." groups=["Bullets"]]
+
+[node name="Environment" type="Node2D" parent="."]
+
+[node name="Wall 1" type="StaticBody2D" parent="Environment"]
 position = Vector2(0, -1000)
 
-[node name="Polygon2D" type="Polygon2D" parent="Wall 1" node_paths=PackedStringArray("polygon_2d", "collision_polygon_2d")]
+[node name="Polygon2D" type="Polygon2D" parent="Environment/Wall 1" node_paths=PackedStringArray("polygon_2d")]
 polygon = PackedVector2Array(-2000, -25, -2000, 25, 2000, 25, 2000, -25)
 script = ExtResource("3_s2t3t")
 polygon_2d = NodePath(".")
-collision_polygon_2d = NodePath("../CollisionPolygon2D")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Wall 1"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Environment/Wall 1"]
 
-[node name="Wall 2" type="StaticBody2D" parent="."]
+[node name="Wall 2" type="StaticBody2D" parent="Environment"]
 position = Vector2(0, 1000)
 
-[node name="Polygon2D" type="Polygon2D" parent="Wall 2" node_paths=PackedStringArray("polygon_2d", "collision_polygon_2d")]
+[node name="Polygon2D" type="Polygon2D" parent="Environment/Wall 2" node_paths=PackedStringArray("polygon_2d")]
 polygon = PackedVector2Array(-2000, -25, -2000, 25, 2000, 25, 2000, -25)
 script = ExtResource("3_s2t3t")
 polygon_2d = NodePath(".")
-collision_polygon_2d = NodePath("../CollisionPolygon2D")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Wall 2"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Environment/Wall 2"]
 
-[node name="Wall 3" type="StaticBody2D" parent="."]
+[node name="Wall 3" type="StaticBody2D" parent="Environment"]
 position = Vector2(2000, 0)
 rotation = 1.5708
 
-[node name="Polygon2D" type="Polygon2D" parent="Wall 3" node_paths=PackedStringArray("polygon_2d", "collision_polygon_2d")]
+[node name="Polygon2D" type="Polygon2D" parent="Environment/Wall 3" node_paths=PackedStringArray("polygon_2d")]
 polygon = PackedVector2Array(-1000, -25, -1000, 25, 1000, 25, 1000, -25)
 script = ExtResource("3_s2t3t")
 polygon_2d = NodePath(".")
-collision_polygon_2d = NodePath("../CollisionPolygon2D")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Wall 3"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Environment/Wall 3"]
 
-[node name="Wall 4" type="StaticBody2D" parent="."]
+[node name="Wall 4" type="StaticBody2D" parent="Environment"]
 position = Vector2(-2000, 0)
 rotation = 1.5708
 
-[node name="Polygon2D" type="Polygon2D" parent="Wall 4" node_paths=PackedStringArray("polygon_2d", "collision_polygon_2d")]
+[node name="Polygon2D" type="Polygon2D" parent="Environment/Wall 4" node_paths=PackedStringArray("polygon_2d")]
 polygon = PackedVector2Array(-1000, -25, -1000, 25, 1000, 25, 1000, -25)
 script = ExtResource("3_s2t3t")
 polygon_2d = NodePath(".")
-collision_polygon_2d = NodePath("../CollisionPolygon2D")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Wall 4"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Environment/Wall 4"]

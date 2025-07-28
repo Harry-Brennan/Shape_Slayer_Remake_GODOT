@@ -1,20 +1,38 @@
-extends Node 
+class_name Shoot
+extends Node2D 
 
-# Called when the node enters the scene tree for the first time.
-#@export var bullet : PackedScene
-@export var shoot_cooldown_timer : Timer
-@export var ammo_regen_timer : Timer
+#timers for the fire rate and the ammo regeneration
+var shoot_cooldown_timer : Timer = null
+var ammo_regen_timer : Timer = null
 
+#temporary rng number generator for bullet speed and damage just wanted to test
 var rng = RandomNumberGenerator.new()
 
+#ability to shoot based on other checks
 var can_shoot := false
 
-@export var shoot_cooldown_length := 0.1
-#var shoot_cooldown := false
+#fire rate
+@export var shoot_cooldown_length := .05
 
+#ammo
 var ammo := 10
 @export var ammo_regen_length := 3.0
-#var ammo_regen_active := false
+
+
+func _ready():
+	#creating a timer for the fire rate / shoot cooldown and adding
+	shoot_cooldown_timer = Timer.new()
+	shoot_cooldown_timer.one_shot = true
+	shoot_cooldown_timer.wait_time = shoot_cooldown_length
+	add_child(shoot_cooldown_timer)
+	
+	#creating a timer for the ammo regen and adding, connecting to respective event as well for timeout
+	ammo_regen_timer = Timer.new()
+	ammo_regen_timer.one_shot = true
+	ammo_regen_timer.wait_time = ammo_regen_length
+	add_child(ammo_regen_timer)
+	ammo_regen_timer.timeout.connect(ammo_regen_complete)
+	
 
 func _process(delta):
 	if (shoot_cooldown_timer.is_stopped() and ammo > 0):
@@ -22,34 +40,28 @@ func _process(delta):
 	else:
 		can_shoot = false
 
-func shoot(shoot_pos : Vector2, shoot_rot : float):
+func shoot():
 	if (can_shoot):
-		#var instantiated_bullet = bullet.instantiate()
-		var instantiated_bullet : Bullet =  Bullet.new_bullet(rng.randf_range(150, 250),rng.randf_range(0, 100))
-		instantiated_bullet.global_position = shoot_pos
-		instantiated_bullet.global_rotation = shoot_rot
-		add_child(instantiated_bullet)
+		
+		var instantiated_bullet : Bullet =  Bullet.new_bullet(rng.randf_range(150, 250),rng.randf_range(0, 100), global_position, global_rotation)
+		get_tree().get_first_node_in_group("Bullets").add_child(instantiated_bullet)
 		ammo -= 1
-		shoot_cooldown_timer.wait_time = shoot_cooldown_length
+		
 		shoot_cooldown_timer.start()
 		#shoot_cooldown = true
 	else:
-
+		#print("can not shoot")
 		if (ammo == 0 and ammo_regen_timer.is_stopped()):
-			ammo_regen_timer.wait_time = ammo_regen_length
+			print("should start ammo regen timer")
 			ammo_regen_timer.start()
 			#ammo_regen_active = true
-
 		pass
-
-func _on_player_body_player_shoot_signal(shoot_pos : Vector2, shoot_rot : float):
-	shoot(shoot_pos, shoot_rot)
 
 func _on_timer_timeout():
 	#shoot_cooldown = false
 	pass
 
-func _on_ammo_regen_timer_timeout():
+func ammo_regen_complete():
 	ammo = 10
 	#ammo_regen_active = false
 	print("ammo_regen_timer timeout")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dm3fb7q6w4m3e"]
+[gd_scene load_steps=8 format=3 uid="uid://dm3fb7q6w4m3e"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Player_Controller.gd" id="1_5oju5"]
 [ext_resource type="Script" path="res://Scripts/CollisionUpdater.gd" id="2_ggnwl"]
@@ -11,11 +11,13 @@ min_value = 0.05
 _data = [Vector2(0, 0), 0.0, 2.17473, 0, 0, Vector2(0.35, 0.5), 0.0, 15.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0]
 point_count = 3
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_kwno1"]
+
 [node name="Player Body" type="CharacterBody2D" node_paths=PackedStringArray("shooting_controller")]
 motion_mode = 1
 script = ExtResource("1_5oju5")
 speed = 250.0
-shooting_controller = NodePath("")
+shooting_controller = NodePath("Player Shooting Controller")
 curve = SubResource("Curve_hdsdm")
 
 [node name="Health" type="Node" parent="."]
@@ -27,23 +29,29 @@ rotation = 1.5708
 scale = Vector2(10, 5)
 polygon = PackedVector2Array(0, 0, 2, 6, 1.7452, 4.3438, 0, -7, -2, 6)
 
-[node name="Player Shape" type="Polygon2D" parent="." node_paths=PackedStringArray("polygon_2d", "collision_polygons_to_update")]
+[node name="Player Shape" type="Polygon2D" parent="." node_paths=PackedStringArray("polygon_2d", "collisions_to_update")]
 rotation = 1.5708
 scale = Vector2(10, 5)
 polygon = PackedVector2Array(0, 0, 2, 6, 1.26736, 1.23785, 0, -7, -2, 6)
 script = ExtResource("2_ggnwl")
 polygon_2d = NodePath(".")
-collision_polygons_to_update = [NodePath("../Player Collision"), NodePath("../HitBox/Hitbox Collision")]
+collisions_to_update = [NodePath("../Player Collision")]
+
+[node name="Player Shooting Controller" type="Node2D" parent="."]
+position = Vector2(50, 0)
+script = ExtResource("3_7x1kn")
+shoot_cooldown_length = null
+ammo_regen_length = null
 
 [node name="HitBox" type="Area2D" parent="."]
-rotation = 1.5708
-scale = Vector2(10, 5)
 collision_mask = 0
 script = ExtResource("5_hvjwb")
 
-[node name="Hitbox Collision" type="CollisionPolygon2D" parent="HitBox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("CircleShape2D_kwno1")
 
 [node name="Shoot" type="Node2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(35, 0)
 script = ExtResource("3_7x1kn")
+shoot_cooldown_length = null
+ammo_regen_length = null

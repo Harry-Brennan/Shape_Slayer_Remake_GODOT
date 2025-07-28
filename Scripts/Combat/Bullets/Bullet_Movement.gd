@@ -1,3 +1,4 @@
+class_name Bullet_Movement
 extends Node2D
 
 @onready var Bullet_Parent := get_parent()
@@ -5,9 +6,10 @@ enum movement_types {straight, homing}
 @export var movement_preset : movement_types
 var speed
 @export var life_duration := 5.0
-@export var life_duration_timer : Timer
+var life_duration_timer : Timer
 
 func _ready():
+	life_duration_timer = Timer.new()
 	life_duration_timer.wait_time = life_duration
 	life_duration_timer.start()
 	
