@@ -14,6 +14,8 @@ signal health_depleted
 @export var invincible := false : get = get_invincible, set = set_invincible
 var invincible_timer : Timer = null
 
+@export var is_player := false
+
 #getter and setter for health
 func get_health() -> int:
 	return health
@@ -63,6 +65,7 @@ func set_invincible(value : bool):
 #temporary invincibility with a time passed for the amount of time for invincibility
 func set_temporary_invincibility(time : float):
 	#creating the invincible timer
+	print("Invincibility activated for ", time)
 	if invincible_timer == null:
 		invincible_timer = Timer.new()
 		invincible_timer.one_shot = true

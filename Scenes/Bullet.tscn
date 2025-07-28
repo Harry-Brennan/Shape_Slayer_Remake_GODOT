@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://b6kqxwlgk852f"]
 
-[ext_resource type="Script" path="res://Scripts/CollisionUpdater.gd" id="1_5dtnv"]
+[ext_resource type="Script" path="res://Scripts/CollisionMatcher.gd" id="1_5dtnv"]
 [ext_resource type="Script" path="res://Scripts/Combat/Bullets/Bullet.gd" id="1_p7pih"]
 [ext_resource type="Script" path="res://Scripts/Hitbox.gd" id="2_h7ei0"]
 [ext_resource type="Script" path="res://Scripts/Combat/Bullets/Bullet_Movement.gd" id="4_h8u6h"]
@@ -9,22 +9,24 @@
 script = ExtResource("1_p7pih")
 hitbox = NodePath("Bullet Hitbox")
 
-[node name="Bullet Display Shape" type="Polygon2D" parent="." node_paths=PackedStringArray("polygon_2d", "collision_polygons_to_update")]
-polygon = PackedVector2Array(0, -10, 10, 0, 0, 10, -10, 0)
+[node name="Collision_Matcher" type="Node" parent="." node_paths=PackedStringArray("polygon_2d", "collision_polygons_to_update")]
 script = ExtResource("1_5dtnv")
-polygon_2d = NodePath(".")
-collision_polygons_to_update = [NodePath("../BulletCollision")]
+polygon_2d = NodePath("../Bullet Display Shape")
+collision_polygons_to_update = [NodePath("../BulletCollision"), NodePath("../Bullet Hitbox/Bullet Hitbox Collision")]
+
+[node name="Bullet_Movement" type="Node" parent="."]
+script = ExtResource("4_h8u6h")
+
+[node name="Bullet Display Shape" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(0, -10, 10, 0, 0, 10, -10, 0)
 
 [node name="BulletCollision" type="CollisionPolygon2D" parent="."]
 
 [node name="Bullet Hitbox" type="Area2D" parent="."]
-collision_layer = 2
+collision_layer = 4
 collision_mask = 0
 script = ExtResource("2_h7ei0")
 damage = 50
 
 [node name="Bullet Hitbox Collision" type="CollisionPolygon2D" parent="Bullet Hitbox"]
 polygon = PackedVector2Array(15, 0, 0, 15, -15, 0, 0, -15)
-
-[node name="Bullet_Movement" type="Node2D" parent="."]
-script = ExtResource("4_h8u6h")

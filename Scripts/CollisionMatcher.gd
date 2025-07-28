@@ -1,4 +1,5 @@
-extends Node2D
+class_name Collision_Matcher
+extends Node
 
 @export var polygon_2d : Polygon2D
 #@export var collision_polygon_2d : CollisionPolygon2D
@@ -6,6 +7,8 @@ extends Node2D
 @export var collision_polygons_to_update : Array[CollisionPolygon2D]
 
 func _ready():
+	if polygon_2d == null:
+		return
 	for i in collision_polygons_to_update.size():
 		if (collision_polygons_to_update[i] == null):
 			pass
