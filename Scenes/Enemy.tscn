@@ -1,13 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://dj4e4qmcqp7sf"]
+[gd_scene load_steps=7 format=3 uid="uid://dj4e4qmcqp7sf"]
 
-[ext_resource type="Script" path="res://Scripts/CollisionMatcher.gd" id="1_4nxak"]
-[ext_resource type="Script" path="res://Scripts/Combat/Enemy.gd" id="1_e7y5v"]
-[ext_resource type="Script" path="res://Scripts/Hurtbox.gd" id="2_v06bp"]
-[ext_resource type="Script" path="res://Scripts/Health.gd" id="3_igm5i"]
-[ext_resource type="Script" path="res://Scripts/Hitbox.gd" id="5_luymv"]
+[ext_resource type="Script" path="res://Scripts/Collision/CollisionMatcher.gd" id="1_4nxak"]
+[ext_resource type="Script" path="res://Scripts/Combat/Enemy/Enemy.gd" id="1_e7y5v"]
+[ext_resource type="Script" path="res://Scripts/Collision/Hurtbox.gd" id="2_v06bp"]
+[ext_resource type="Script" path="res://Scripts/Combat/Health.gd" id="3_igm5i"]
+[ext_resource type="Script" path="res://Scripts/Combat/Enemy/Enemy_SM.gd" id="4_dbr8f"]
+[ext_resource type="Script" path="res://Scripts/Collision/Hitbox.gd" id="5_luymv"]
 
-[node name="Enemy" type="Area2D"]
-scale = Vector2(5, 5)
+[node name="Enemy" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("1_e7y5v")
 
 [node name="Health" type="Node" parent="."]
@@ -19,11 +21,13 @@ script = ExtResource("1_4nxak")
 polygon_2d = NodePath("../Enemy Shape")
 collision_polygons_to_update = [NodePath("../Enemy Collision"), NodePath("../HurtBox/Hurtbox Collision"), NodePath("../HitBox/CollisionPolygon2D")]
 
+[node name="Enemy_State_Machine" type="Node" parent="."]
+script = ExtResource("4_dbr8f")
+
 [node name="Enemy Collision" type="CollisionPolygon2D" parent="."]
 
 [node name="Enemy Shape" type="Polygon2D" parent="."]
-scale = Vector2(1, 1)
-polygon = PackedVector2Array(3, 3, 0, 1.5, -3, 3, -3, -3, 0, -1.5, 3, -3)
+polygon = PackedVector2Array(25, 0, 0, -25, -15, 0, 0, 25)
 
 [node name="HurtBox" type="Area2D" parent="."]
 collision_layer = 0

@@ -2,15 +2,12 @@
 
 [ext_resource type="PackedScene" uid="uid://dm3fb7q6w4m3e" path="res://Scenes/Player.tscn" id="1_r1q1o"]
 [ext_resource type="PackedScene" uid="uid://dj4e4qmcqp7sf" path="res://Scenes/Enemy.tscn" id="2_3ti6f"]
-[ext_resource type="Script" path="res://Scripts/CollisionMatcher.gd" id="3_s2t3t"]
+[ext_resource type="Script" path="res://Scripts/Collision/CollisionMatcher.gd" id="3_s2t3t"]
 [ext_resource type="Script" path="res://Scripts/Player/Camera.gd" id="4_tchuo"]
 
 [node name="Game" type="Node2D"]
 
-[node name="Player Body" parent="." instance=ExtResource("1_r1q1o")]
-speed = 500.0
-
-[node name="Camera2D" type="Camera2D" parent="Player Body"]
+[node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, 2)
 process_callback = 0
 position_smoothing_enabled = true
@@ -23,14 +20,11 @@ drag_right_margin = 0.25
 drag_bottom_margin = 0.25
 script = ExtResource("4_tchuo")
 
+[node name="Player Body" parent="." instance=ExtResource("1_r1q1o")]
+speed = 500.0
+
 [node name="Enemy1" parent="." instance=ExtResource("2_3ti6f")]
 position = Vector2(-337, 122)
-
-[node name="Enemy2" parent="." instance=ExtResource("2_3ti6f")]
-position = Vector2(229, 168)
-
-[node name="Enemy3" parent="." instance=ExtResource("2_3ti6f")]
-position = Vector2(340, -227)
 
 [node name="Bullets" type="Node2D" parent="." groups=["Bullets"]]
 

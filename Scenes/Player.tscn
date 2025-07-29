@@ -1,19 +1,19 @@
 [gd_scene load_steps=9 format=3 uid="uid://dm3fb7q6w4m3e"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Player_Controller.gd" id="1_5oju5"]
-[ext_resource type="Script" path="res://Scripts/CollisionMatcher.gd" id="2_ggnwl"]
-[ext_resource type="Script" path="res://Scripts/Combat/Shoot.gd" id="3_7x1kn"]
-[ext_resource type="Script" path="res://Scripts/Health.gd" id="4_8omlf"]
-[ext_resource type="Script" path="res://Scripts/Hitbox.gd" id="5_hvjwb"]
-[ext_resource type="Script" path="res://Scripts/Dash.gd" id="6_umdk7"]
-[ext_resource type="Script" path="res://Scripts/Hurtbox.gd" id="7_ehska"]
+[ext_resource type="Script" path="res://Scripts/Collision/CollisionMatcher.gd" id="2_ggnwl"]
+[ext_resource type="Script" path="res://Scripts/Combat/Bullets/Shoot.gd" id="3_7x1kn"]
+[ext_resource type="Script" path="res://Scripts/Combat/Health.gd" id="4_8omlf"]
+[ext_resource type="Script" path="res://Scripts/Collision/Hitbox.gd" id="5_hvjwb"]
+[ext_resource type="Script" path="res://Scripts/Combat/Dash.gd" id="6_umdk7"]
+[ext_resource type="Script" path="res://Scripts/Collision/Hurtbox.gd" id="7_ehska"]
 
 [sub_resource type="Curve" id="Curve_hdsdm"]
 min_value = 0.05
 _data = [Vector2(0, 0), 0.0, 2.17473, 0, 0, Vector2(0.35, 0.5), 0.0, 15.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[node name="Player Body" type="CharacterBody2D"]
+[node name="Player Body" type="CharacterBody2D" groups=["Player"]]
 z_index = 5
 motion_mode = 1
 script = ExtResource("1_5oju5")
