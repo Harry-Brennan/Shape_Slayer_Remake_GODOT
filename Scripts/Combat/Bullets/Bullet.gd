@@ -7,7 +7,7 @@ var is_enemy_bullet : bool
 
 const enemy_bullet_scene := preload("res://Scenes/Enemy_Bullet.tscn")
 const bullet_scene := preload("res://Scenes/Bullet.tscn")
-#test
+#test s
 @export var hitbox : HitBox
 
 static func new_bullet(speed : float, damage : int, pos : Vector2, rot : float, is_enemy_bullet: bool) -> Bullet:
