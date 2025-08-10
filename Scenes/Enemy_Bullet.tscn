@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bfl385qe5ac4f"]
+
+[ext_resource type="PackedScene" uid="uid://b6kqxwlgk852f" path="res://Scenes/Bullet.tscn" id="1_swila"]
+
+[node name="Enemy Bullet" instance=ExtResource("1_swila")]
+
+[node name="Bullet Hitbox" parent="." index="4"]
+collision_layer = 16

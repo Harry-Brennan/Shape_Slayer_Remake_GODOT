@@ -1,14 +1,15 @@
 [gd_scene load_steps=5 format=3 uid="uid://bu7po7i0ak78t"]
 
 [ext_resource type="PackedScene" uid="uid://dm3fb7q6w4m3e" path="res://Scenes/Player.tscn" id="1_r1q1o"]
-[ext_resource type="PackedScene" uid="uid://dj4e4qmcqp7sf" path="res://Scenes/Enemy.tscn" id="2_3ti6f"]
-[ext_resource type="Script" path="res://Scripts/Collision/CollisionMatcher.gd" id="3_s2t3t"]
+[ext_resource type="PackedScene" uid="uid://cgn22jkyy1u3n" path="res://Scenes/Enemy.tscn" id="2_3ti6f"]
+[ext_resource type="PackedScene" uid="uid://bhsqjsds6cdil" path="res://Scenes/Environment_Wall.tscn" id="4_oxe1v"]
 [ext_resource type="Script" path="res://Scripts/Player/Camera.gd" id="4_tchuo"]
 
 [node name="Game" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, 2)
+zoom = Vector2(0.5, 0.5)
 process_callback = 0
 position_smoothing_enabled = true
 rotation_smoothing_enabled = true
@@ -23,51 +24,13 @@ script = ExtResource("4_tchuo")
 [node name="Player Body" parent="." instance=ExtResource("1_r1q1o")]
 speed = 500.0
 
-[node name="Enemy1" parent="." instance=ExtResource("2_3ti6f")]
-position = Vector2(-337, 122)
-
 [node name="Bullets" type="Node2D" parent="." groups=["Bullets"]]
+
+[node name="Enemy Body" parent="." instance=ExtResource("2_3ti6f")]
+position = Vector2(125, 0)
 
 [node name="Environment" type="Node2D" parent="."]
 
-[node name="Wall 1" type="StaticBody2D" parent="Environment"]
-position = Vector2(0, -1000)
-
-[node name="Polygon2D" type="Polygon2D" parent="Environment/Wall 1" node_paths=PackedStringArray("polygon_2d")]
-polygon = PackedVector2Array(-2000, -25, -2000, 25, 2000, 25, 2000, -25)
-script = ExtResource("3_s2t3t")
-polygon_2d = NodePath(".")
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Environment/Wall 1"]
-
-[node name="Wall 2" type="StaticBody2D" parent="Environment"]
-position = Vector2(0, 1000)
-
-[node name="Polygon2D" type="Polygon2D" parent="Environment/Wall 2" node_paths=PackedStringArray("polygon_2d")]
-polygon = PackedVector2Array(-2000, -25, -2000, 25, 2000, 25, 2000, -25)
-script = ExtResource("3_s2t3t")
-polygon_2d = NodePath(".")
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Environment/Wall 2"]
-
-[node name="Wall 3" type="StaticBody2D" parent="Environment"]
-position = Vector2(2000, 0)
-rotation = 1.5708
-
-[node name="Polygon2D" type="Polygon2D" parent="Environment/Wall 3" node_paths=PackedStringArray("polygon_2d")]
-polygon = PackedVector2Array(-1000, -25, -1000, 25, 1000, 25, 1000, -25)
-script = ExtResource("3_s2t3t")
-polygon_2d = NodePath(".")
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Environment/Wall 3"]
-
-[node name="Wall 4" type="StaticBody2D" parent="Environment"]
-position = Vector2(-2000, 0)
-rotation = 1.5708
-
-[node name="Polygon2D" type="Polygon2D" parent="Environment/Wall 4" node_paths=PackedStringArray("polygon_2d")]
-polygon = PackedVector2Array(-1000, -25, -1000, 25, 1000, 25, 1000, -25)
-script = ExtResource("3_s2t3t")
-polygon_2d = NodePath(".")
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Environment/Wall 4"]
+[node name="Area2D" parent="Environment" instance=ExtResource("4_oxe1v")]
+position = Vector2(43, -44)
+collision_vectors = Array[Vector2]([Vector2(500, 0), Vector2(250, 500), Vector2(0, 250), Vector2(500, 0)])

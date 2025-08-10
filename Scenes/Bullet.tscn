@@ -6,6 +6,8 @@
 [ext_resource type="Script" path="res://Scripts/Collision/Hitbox.gd" id="4_lk63g"]
 
 [node name="Bullet" type="Area2D" node_paths=PackedStringArray("hitbox")]
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("1_wtj6k")
 hitbox = NodePath("Bullet Hitbox")
 

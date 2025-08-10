@@ -54,7 +54,5 @@ script = ExtResource("4_h34gq")
 unique_name_in_owner = true
 position = Vector2(45, 0)
 script = ExtResource("7_r243p")
-is_enemy = true
-shoot_cooldown_length = 0.5
 
 [connection signal="health_depleted" from="Health" to="." method="_on_health_health_depleted"]

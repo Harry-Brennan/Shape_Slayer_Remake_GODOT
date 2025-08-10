@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://bhsqjsds6cdil"]
+
+[ext_resource type="Script" path="res://Scenes/Environment_Wall.gd" id="1_hdfka"]
+[ext_resource type="Script" path="res://Scripts/Collision/CollisionMatcher.gd" id="1_xy8g6"]
+
+[node name="Area2D" type="Area2D"]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("1_hdfka")
+
+[node name="Collision_Matcher" type="Node" parent="." node_paths=PackedStringArray("polygon_2d", "collision_polygons_to_update")]
+script = ExtResource("1_xy8g6")
+polygon_2d = NodePath("../Wall Polygon")
+collision_polygons_to_update = [NodePath("../Wall Collision")]
+
+[node name="Wall Collision" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(0, 0)
+
+[node name="Wall Polygon" type="Polygon2D" parent="."]
+unique_name_in_owner = true

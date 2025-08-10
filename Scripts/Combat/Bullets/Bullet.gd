@@ -3,18 +3,29 @@ class_name Bullet
 
 var damage : int
 var speed : float
+var is_enemy_bullet : bool
 
-const bullet_scene : PackedScene = preload("res://Scenes/Bullet.tscn")
-
+const enemy_bullet_scene := preload("res://Scenes/Enemy_Bullet.tscn")
+const bullet_scene := preload("res://Scenes/Bullet.tscn")
+#test
 @export var hitbox : HitBox
 
-static func new_bullet(speed : float, damage : int, pos : Vector2, rot : float) -> Bullet:
-	var new_bullet := bullet_scene.instantiate()
-	new_bullet.speed = speed
-	new_bullet.damage = damage
-	new_bullet.global_position = pos
-	new_bullet.global_rotation = rot
-	return new_bullet
+static func new_bullet(speed : float, damage : int, pos : Vector2, rot : float, is_enemy_bullet: bool) -> Bullet:
+	if is_enemy_bullet:
+		var new_bullet := enemy_bullet_scene.instantiate()
+		new_bullet.speed = speed
+		new_bullet.damage = damage
+		new_bullet.global_position = pos
+		new_bullet.global_rotation = rot
+		return new_bullet
+	else:
+		var new_bullet := bullet_scene.instantiate()
+		new_bullet.speed = speed
+		new_bullet.damage = damage
+		new_bullet.global_position = pos
+		new_bullet.global_rotation = rot
+		return new_bullet
+
 
 func _ready():
 	#print(damage)

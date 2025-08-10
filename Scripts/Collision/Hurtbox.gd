@@ -9,7 +9,7 @@ var overlapping_hitboxes : Array[HitBox]
 
 var continous_dmg_timer : Timer = null
 var dmg_timers : Array[Timer]
-
+#test
 func _ready():
 	connect("area_entered", _on_area_entered)
 	connect("area_exited", _on_area_exited)
@@ -35,7 +35,7 @@ func _on_area_entered(hitbox : HitBox) -> void:
 		health.set_temporary_invincibility(1)
 
 	#received_damage.emit(hitbox.damage)
-	print(get_parent().name, " took ", hitbox.damage, " damage from ", hitbox.get_parent())
+	print(get_parent().name, " took ", hitbox.damage, " damage from ", hitbox.get_parent().get_parent())
 
 func _on_area_exited(hitbox : HitBox) -> void:
 	dmg_timers[overlapping_hitboxes.find(hitbox)].stop()

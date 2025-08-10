@@ -1,6 +1,8 @@
 class_name Shoot
 extends Node2D 
 
+@export var is_enemy := false
+
 #timers for the fire rate and the ammo regeneration
 var shoot_cooldown_timer : Timer = null
 var ammo_regen_timer : Timer = null
@@ -39,11 +41,11 @@ func _process(delta):
 		can_shoot = true
 	else:
 		can_shoot = false
-
+#test
 func shoot():
 	if (can_shoot):
 		
-		var instantiated_bullet : Bullet =  Bullet.new_bullet(rng.randf_range(150, 250),rng.randf_range(0, 100), global_position, global_rotation)
+		var instantiated_bullet : Bullet =  Bullet.new_bullet(500,rng.randf_range(0, 100), global_position, global_rotation, is_enemy)
 		get_tree().get_first_node_in_group("Bullets").add_child(instantiated_bullet)
 		ammo -= 1
 		

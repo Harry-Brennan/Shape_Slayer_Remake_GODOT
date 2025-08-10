@@ -15,6 +15,7 @@ point_count = 3
 
 [node name="Player Body" type="CharacterBody2D" groups=["Player"]]
 z_index = 5
+collision_layer = 9
 motion_mode = 1
 script = ExtResource("1_5oju5")
 speed = 250.0

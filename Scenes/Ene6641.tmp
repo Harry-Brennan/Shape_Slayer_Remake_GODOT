@@ -24,7 +24,10 @@ collision_polygons_to_update = [NodePath("../Enemy Collision"), NodePath("../Hit
 
 [node name="Enemy_State_Machine" type="Node" parent="."]
 script = ExtResource("4_x7uyr")
+enemy_speed = null
+chase_range = null
 can_shoot = true
+shoot_range = null
 
 [node name="Enemy Collision" type="CollisionPolygon2D" parent="."]
 rotation = 1.5708
