@@ -8,7 +8,7 @@ var move_speed : float
 var shoot_damage : int
 
 const enemy_scene : PackedScene = preload("res://Scenes/Enemy.tscn")
-#test ssss
+#test 
 static func new_enemy(contact_dmg : float, can_shoot : bool, shoot_range : float, move_speed : float, shoot_damage : int) -> Enemy:
 	var new_enemy := enemy_scene.instantiate()
 	new_enemy.contact_damage = contact_dmg

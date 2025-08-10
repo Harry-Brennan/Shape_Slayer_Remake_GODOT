@@ -54,7 +54,6 @@ collision_mask = 0
 script = ExtResource("5_hvjwb")
 
 [node name="Hitbox Collision" type="CollisionPolygon2D" parent="HitBox"]
-polygon = PackedVector2Array(0, 0, 5, 5, 5, 0)
 
 [node name="HurtBox" type="Area2D" parent="."]
 rotation = 1.5708
@@ -63,4 +62,3 @@ collision_mask = 18
 script = ExtResource("7_ehska")
 
 [node name="Hurtbox Collision" type="CollisionPolygon2D" parent="HurtBox"]
-polygon = PackedVector2Array(0, 0, 5, 5, 5, 0)
