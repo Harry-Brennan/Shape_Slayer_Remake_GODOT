@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://drjbuou5c2h0v"]
 
-[ext_resource type="Script" path="res://Scripts/Combat/Bullets/Shoot.gd" id="1_8stgr"]
+[ext_resource type="Script" uid="uid://csqyj5cmgj58q" path="res://Scripts/Combat/Bullets/Shoot.gd" id="1_8stgr"]
 
 [node name="Shoot_Position" type="Node2D"]
 script = ExtResource("1_8stgr")

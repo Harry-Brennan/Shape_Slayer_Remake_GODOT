@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://b6kqxwlgk852f"]
 
-[ext_resource type="Script" path="res://Scripts/Combat/Bullets/Bullet.gd" id="1_wtj6k"]
-[ext_resource type="Script" path="res://Scripts/Collision/CollisionMatcher.gd" id="2_q0wm1"]
-[ext_resource type="Script" path="res://Scripts/Combat/Bullets/Bullet_Movement.gd" id="3_aech6"]
-[ext_resource type="Script" path="res://Scripts/Collision/Hitbox.gd" id="4_lk63g"]
+[ext_resource type="Script" uid="uid://buvcj8n4snk1y" path="res://Scripts/Combat/Bullets/Bullet.gd" id="1_wtj6k"]
+[ext_resource type="Script" uid="uid://bxvnsi144darq" path="res://Scripts/Collision/CollisionMatcher.gd" id="2_q0wm1"]
+[ext_resource type="Script" uid="uid://cqwfpoeuagqdg" path="res://Scripts/Combat/Bullets/Bullet_Movement.gd" id="3_aech6"]
+[ext_resource type="Script" uid="uid://brot81lsfnn7l" path="res://Scripts/Collision/Hitbox.gd" id="4_lk63g"]
 
 [node name="Bullet" type="Area2D" node_paths=PackedStringArray("hitbox")]
 collision_layer = 0

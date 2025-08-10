@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bhsqjsds6cdil"]
 
-[ext_resource type="Script" path="res://Scenes/Environment_Wall.gd" id="1_hdfka"]
-[ext_resource type="Script" path="res://Scripts/Collision/CollisionMatcher.gd" id="1_xy8g6"]
+[ext_resource type="Script" uid="uid://c3smp4267gw6g" path="res://Scenes/Environment_Wall.gd" id="1_hdfka"]
+[ext_resource type="Script" uid="uid://bxvnsi144darq" path="res://Scripts/Collision/CollisionMatcher.gd" id="1_xy8g6"]
 
 [node name="Area2D" type="Area2D"]
 collision_layer = 8

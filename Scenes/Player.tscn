@@ -1,15 +1,15 @@
 [gd_scene load_steps=9 format=3 uid="uid://dm3fb7q6w4m3e"]
 
-[ext_resource type="Script" path="res://Scripts/Player/Player_Controller.gd" id="1_5oju5"]
-[ext_resource type="Script" path="res://Scripts/Collision/CollisionMatcher.gd" id="2_ggnwl"]
-[ext_resource type="Script" path="res://Scripts/Combat/Bullets/Shoot.gd" id="3_7x1kn"]
-[ext_resource type="Script" path="res://Scripts/Combat/Health.gd" id="4_8omlf"]
-[ext_resource type="Script" path="res://Scripts/Collision/Hitbox.gd" id="5_hvjwb"]
-[ext_resource type="Script" path="res://Scripts/Combat/Dash.gd" id="6_umdk7"]
-[ext_resource type="Script" path="res://Scripts/Collision/Hurtbox.gd" id="7_ehska"]
+[ext_resource type="Script" uid="uid://u2l8btuv8ovd" path="res://Scripts/Player/Player_Controller.gd" id="1_5oju5"]
+[ext_resource type="Script" uid="uid://bxvnsi144darq" path="res://Scripts/Collision/CollisionMatcher.gd" id="2_ggnwl"]
+[ext_resource type="Script" uid="uid://csqyj5cmgj58q" path="res://Scripts/Combat/Bullets/Shoot.gd" id="3_7x1kn"]
+[ext_resource type="Script" uid="uid://c3d2myj2pwqfq" path="res://Scripts/Combat/Health.gd" id="4_8omlf"]
+[ext_resource type="Script" uid="uid://brot81lsfnn7l" path="res://Scripts/Collision/Hitbox.gd" id="5_hvjwb"]
+[ext_resource type="Script" uid="uid://ctxr2xnlgd0nt" path="res://Scripts/Combat/Dash.gd" id="6_umdk7"]
+[ext_resource type="Script" uid="uid://c6g0cur5w4w7e" path="res://Scripts/Collision/Hurtbox.gd" id="7_ehska"]
 
 [sub_resource type="Curve" id="Curve_hdsdm"]
-min_value = 0.05
+_limits = [0.05, 1.0, 0.0, 1.0]
 _data = [Vector2(0, 0), 0.0, 2.17473, 0, 0, Vector2(0.35, 0.5), 0.0, 15.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0]
 point_count = 3
 
