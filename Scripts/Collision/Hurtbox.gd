@@ -1,7 +1,7 @@
 class_name HurtBox
 extends Area2D
 
-signal received_damage(damage : int)
+#signal received_damage(damage : int)
 
 @onready var health : Health = %Health
 

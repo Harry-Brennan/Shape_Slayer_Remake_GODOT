@@ -15,6 +15,7 @@ hitbox = NodePath("Bullet Hitbox")
 script = ExtResource("2_q0wm1")
 polygon_2d = NodePath("../Bullet Display Shape")
 collision_polygons_to_update = [NodePath("../BulletCollision"), NodePath("../Bullet Hitbox/Bullet Hitbox Collision")]
+collision_matching_multiplier = 1.5
 
 [node name="Bullet_Movement" type="Node" parent="."]
 script = ExtResource("3_aech6")
@@ -23,7 +24,7 @@ script = ExtResource("3_aech6")
 polygon = PackedVector2Array(0, -10, 10, 0, 0, 10, -10, 0)
 
 [node name="BulletCollision" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(0, 0, 5, 5, 0, 0)
+polygon = PackedVector2Array(0, -10, 10, 0, 0, 10, -10, 0)
 
 [node name="Bullet Hitbox" type="Area2D" parent="."]
 collision_layer = 4
@@ -32,4 +33,4 @@ script = ExtResource("4_lk63g")
 damage = 50
 
 [node name="Bullet Hitbox Collision" type="CollisionPolygon2D" parent="Bullet Hitbox"]
-polygon = PackedVector2Array(15, 0, 0, 15, -15, 0, 0, -15)
+polygon = PackedVector2Array(0, -10, 10, 0, 0, 10, -10, 0)
