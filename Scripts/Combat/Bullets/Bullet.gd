@@ -32,3 +32,10 @@ func _ready():
 	if hitbox == null:
 		return
 	hitbox.set_damage(damage)
+
+
+func _on_area_entered(area):
+	#print("bullet area entered")
+	#print(area.get_owner().get_groups())
+	if area.get_owner().is_in_group("Environment"):
+		queue_free()

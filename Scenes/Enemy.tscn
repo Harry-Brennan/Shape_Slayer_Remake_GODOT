@@ -9,8 +9,8 @@
 [ext_resource type="Script" uid="uid://csqyj5cmgj58q" path="res://Scripts/Combat/Bullets/Shoot.gd" id="7_r243p"]
 
 [node name="Enemy Body" type="CharacterBody2D"]
-collision_layer = 0
-collision_mask = 0
+collision_layer = 2
+collision_mask = 8
 script = ExtResource("1_ahauh")
 
 [node name="Health" type="Node" parent="."]
@@ -28,7 +28,7 @@ can_shoot = true
 
 [node name="Enemy Collision" type="CollisionPolygon2D" parent="."]
 rotation = 1.5708
-polygon = PackedVector2Array(0, 0, 2, 6, 1.7452, 4.3438, 0, -7, -2, 6)
+polygon = PackedVector2Array(0, 0, 30, 45, 0, -45, -30, 45)
 
 [node name="Enemy Shape" type="Polygon2D" parent="."]
 rotation = 1.5708
@@ -41,6 +41,7 @@ collision_mask = 8
 script = ExtResource("3_ghpk5")
 
 [node name="Hitbox Collision" type="CollisionPolygon2D" parent="HitBox"]
+polygon = PackedVector2Array(0, 0, 30, 45, 0, -45, -30, 45)
 
 [node name="HurtBox" type="Area2D" parent="."]
 rotation = 1.5708
@@ -49,6 +50,7 @@ collision_mask = 5
 script = ExtResource("4_h34gq")
 
 [node name="Hurtbox Collision" type="CollisionPolygon2D" parent="HurtBox"]
+polygon = PackedVector2Array(0, 0, 30, 45, 0, -45, -30, 45)
 
 [node name="Shoot" type="Node2D" parent="."]
 unique_name_in_owner = true

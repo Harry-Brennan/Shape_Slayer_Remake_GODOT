@@ -27,11 +27,11 @@ func set_collisions_to_update(new_collision_polygons_to_update : Array[Collision
 
 func set_collision_matching_multiplier(new_multiplier : float):
 	collision_matching_multiplier = new_multiplier
-	print("SETTING COLLISION MATCHING MULTIPLIER")
+	#print("SETTING COLLISION MATCHING MULTIPLIER")
 	update_collisions()
 
 func update_collisions():
-	print("UPDATING COLLISIONS")
+	#print("UPDATING COLLISIONS")
 	if polygon_2d == null:
 		return
 	if collision_matching_multiplier != 1:
@@ -41,6 +41,7 @@ func update_collisions():
 			expanded_collisions.append(multiplied_polygon)
 		
 		for k in collision_polygons_to_update.size():
+			#print(collision_polygons_to_update[k])
 			if (collision_polygons_to_update[k] == null):
 				return
 			else:

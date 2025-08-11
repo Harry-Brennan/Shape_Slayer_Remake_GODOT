@@ -45,7 +45,7 @@ func _process(delta):
 func shoot():
 	if (can_shoot):
 		
-		var instantiated_bullet : Bullet =  Bullet.new_bullet(500,rng.randf_range(0, 100), global_position, global_rotation, is_enemy)
+		var instantiated_bullet : Bullet =  Bullet.new_bullet(1000,rng.randf_range(0, 100), global_position, global_rotation, is_enemy)
 		get_tree().get_first_node_in_group("Bullets").add_child(instantiated_bullet)
 		ammo -= 1
 		

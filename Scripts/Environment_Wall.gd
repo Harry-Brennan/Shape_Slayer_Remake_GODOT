@@ -4,7 +4,7 @@ extends StaticBody2D
 @export var collision_vectors : Array[Vector2] : get = get_wall_collision_vectors , set = set_wall_collision_vectors
 
 @export var wall_polygon : Polygon2D
-@export var wall_collision : CollisionPolygon2D
+@export var wall_collisions : Array[CollisionPolygon2D]
 
 @export var collision_multiplier : float = 1 : set = set_collision_multiplier
 
@@ -27,7 +27,7 @@ func set_wall_collision_vectors(new_wall_collisions : Array[Vector2]):
 		
 		var current_expanded = collision_vectors[i] * collision_multiplier
 		expanded_collisions.append(current_expanded)
-	
-	wall_collision.polygon = expanded_collisions
-	print("set_wall_collision_vectors called")
+	for j in range(0, wall_collisions.size()):
+		wall_collisions[j].polygon = expanded_collisions
+	#print("set_wall_collision_vectors called")
 	

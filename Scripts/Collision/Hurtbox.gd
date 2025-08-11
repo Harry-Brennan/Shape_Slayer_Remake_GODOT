@@ -36,6 +36,9 @@ func _on_area_entered(hitbox : HitBox) -> void:
 
 	#received_damage.emit(hitbox.damage)
 	print(get_parent().name, " took ", hitbox.damage, " damage from ", hitbox.get_parent().get_parent())
+	if hitbox.get_parent().is_in_group("Bullets"):
+		hitbox.get_parent().queue_free()
+
 
 func _on_area_exited(hitbox : HitBox) -> void:
 	dmg_timers[overlapping_hitboxes.find(hitbox)].stop()

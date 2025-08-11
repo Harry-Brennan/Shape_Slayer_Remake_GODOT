@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bu7po7i0ak78t"]
+[gd_scene load_steps=5 format=3 uid="uid://bu7po7i0ak78t"]
 
 [ext_resource type="PackedScene" uid="uid://dm3fb7q6w4m3e" path="res://Scenes/Player.tscn" id="1_r1q1o"]
+[ext_resource type="PackedScene" uid="uid://cgn22jkyy1u3n" path="res://Scenes/Enemy.tscn" id="4_l0b83"]
 [ext_resource type="PackedScene" uid="uid://bhsqjsds6cdil" path="res://Scenes/Environment_Wall.tscn" id="4_oxe1v"]
 [ext_resource type="Script" uid="uid://dvt8cn547wqhj" path="res://Scripts/Player/Camera.gd" id="4_tchuo"]
 
@@ -8,7 +9,7 @@
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, 2)
-zoom = Vector2(0.25, 0.25)
+zoom = Vector2(0.5, 0.5)
 process_callback = 0
 position_smoothing_enabled = true
 rotation_smoothing_enabled = true
@@ -35,12 +36,16 @@ collision_vectors = Array[Vector2]([Vector2(50, 750), Vector2(50, -750), Vector2
 position = Vector2(-1150, 0)
 collision_vectors = Array[Vector2]([Vector2(50, 750), Vector2(50, -750), Vector2(-50, -750), Vector2(-50, 750)])
 
-[node name="Collision Wall3" parent="Environment" instance=ExtResource("4_oxe1v")]
+[node name="Collision Wall3" parent="Environment" node_paths=PackedStringArray("wall_collisions") instance=ExtResource("4_oxe1v")]
 position = Vector2(0, 650)
 rotation = 1.5708
 collision_vectors = Array[Vector2]([Vector2(50, 1250), Vector2(50, -1250), Vector2(-50, -1250), Vector2(-50, 1250)])
+wall_collisions = [null, null]
 
 [node name="Collision Wall4" parent="Environment" instance=ExtResource("4_oxe1v")]
 position = Vector2(0, -650)
 rotation = 1.5708
 collision_vectors = Array[Vector2]([Vector2(50, 1250), Vector2(50, -1250), Vector2(-50, -1250), Vector2(-50, 1250)])
+
+[node name="Enemy Body" parent="." instance=ExtResource("4_l0b83")]
+position = Vector2(710, 327)
