@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://c6xpeycdfakql" path="res://Scripts/Combat/Enemy/Enemy_SM.gd" id="4_x7uyr"]
 [ext_resource type="Script" uid="uid://csqyj5cmgj58q" path="res://Scripts/Combat/Bullets/Shoot.gd" id="7_r243p"]
 
-[node name="Enemy Body" type="CharacterBody2D"]
+[node name="Enemy Body" type="CharacterBody2D" groups=["Enemies"]]
 collision_layer = 2
 collision_mask = 8
 script = ExtResource("1_ahauh")

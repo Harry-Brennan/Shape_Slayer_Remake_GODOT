@@ -11,15 +11,18 @@ var continous_dmg_timer : Timer = null
 var dmg_timers : Array[Timer]
 #test
 func _ready():
-	connect("area_entered", _on_area_entered)
-	connect("area_exited", _on_area_exited)
+	connect("area_entered",_on_area_entered)
+	connect("area_exited",_on_area_exited)
 
-func _on_area_entered(hitbox : HitBox) -> void:
+func _on_area_entered(hitbox : Area2D) -> void:
+	print(hitbox.get_parent())
 	if hitbox == null:
 		return
 	if hitbox.get_parent() == get_parent():
 		return
-
+	if hitbox is not HitBox:
+		return
+	
 	overlapping_hitboxes.append(hitbox)
 	
 	continous_dmg_timer = Timer.new()
@@ -36,11 +39,14 @@ func _on_area_entered(hitbox : HitBox) -> void:
 
 	#received_damage.emit(hitbox.damage)
 	print(get_parent().name, " took ", hitbox.damage, " damage from ", hitbox.get_parent().get_parent())
+	
 	if hitbox.get_parent().is_in_group("Bullets"):
 		hitbox.get_parent().queue_free()
 
 
-func _on_area_exited(hitbox : HitBox) -> void:
+func _on_area_exited(hitbox) -> void:
+	if hitbox is not HitBox:
+		return
 	dmg_timers[overlapping_hitboxes.find(hitbox)].stop()
 	dmg_timers.remove_at(overlapping_hitboxes.find(hitbox))
 	overlapping_hitboxes.remove_at(overlapping_hitboxes.find(hitbox))

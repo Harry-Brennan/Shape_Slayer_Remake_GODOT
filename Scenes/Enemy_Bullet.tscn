@@ -4,5 +4,11 @@
 
 [node name="Enemy Bullet" instance=ExtResource("1_swila")]
 
+[node name="BulletCollision" parent="." index="3"]
+polygon = PackedVector2Array(0, -11, 29.7, 0, 0, 11, -11, 0)
+
 [node name="Bullet Hitbox" parent="." index="4"]
 collision_layer = 16
+
+[node name="Bullet Hitbox Collision" parent="Bullet Hitbox" index="0"]
+polygon = PackedVector2Array(0, -11, 29.7, 0, 0, 11, -11, 0)

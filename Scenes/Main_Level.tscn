@@ -48,4 +48,4 @@ rotation = 1.5708
 collision_vectors = Array[Vector2]([Vector2(50, 1250), Vector2(50, -1250), Vector2(-50, -1250), Vector2(-50, 1250)])
 
 [node name="Enemy Body" parent="." instance=ExtResource("4_l0b83")]
-position = Vector2(710, 327)
+position = Vector2(-797, 213)
