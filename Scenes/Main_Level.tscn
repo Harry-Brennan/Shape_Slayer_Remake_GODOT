@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bhsqjsds6cdil" path="res://Scenes/Environment_Wall.tscn" id="4_oxe1v"]
 [ext_resource type="Script" uid="uid://dvt8cn547wqhj" path="res://Scripts/Player/Camera.gd" id="4_tchuo"]
 [ext_resource type="PackedScene" uid="uid://doptbladuh60b" path="res://Scenes/Enemy_Director.tscn" id="5_fv6fd"]
-[ext_resource type="Script" uid="uid://bcfcp5ev3vqlo" path="res://Enemy_Info.gd" id="6_4jnir"]
+[ext_resource type="Script" uid="uid://bcfcp5ev3vqlo" path="res://Scripts/Enemy_Info.gd" id="6_4jnir"]
 
 [sub_resource type="Resource" id="Resource_5xmjq"]
 script = ExtResource("6_4jnir")

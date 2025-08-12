@@ -15,7 +15,7 @@ func _ready():
 	connect("area_exited",_on_area_exited)
 
 func _on_area_entered(hitbox : Area2D) -> void:
-	print(hitbox.get_parent())
+	#print(hitbox.get_parent())
 	if hitbox == null:
 		return
 	if hitbox.get_parent() == get_parent():
@@ -38,7 +38,7 @@ func _on_area_entered(hitbox : Area2D) -> void:
 		health.set_temporary_invincibility(1)
 
 	#received_damage.emit(hitbox.damage)
-	print(get_parent().name, " took ", hitbox.damage, " damage from ", hitbox.get_parent().get_parent())
+	#print(get_parent().name, " took ", hitbox.damage, " damage from ", hitbox.get_parent().get_parent())
 	
 	if hitbox.get_parent().is_in_group("Bullets"):
 		hitbox.get_parent().queue_free()
@@ -52,5 +52,5 @@ func _on_area_exited(hitbox) -> void:
 	overlapping_hitboxes.remove_at(overlapping_hitboxes.find(hitbox))
 	
 func _dmg_timer_timeout(timer_timedout : Timer):
-	print("dmg timer timed out")
+	#print("dmg timer timed out")
 	health.health -= overlapping_hitboxes[dmg_timers.find(timer_timedout)].damage

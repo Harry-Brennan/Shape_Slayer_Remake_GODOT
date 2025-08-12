@@ -1,5 +1,5 @@
 class_name Health
-extends Node
+extends ProgressBar
 
 #signals for when the max health is changed, health is changed and finally when the health gets to 0
 signal max_health_changed(diff : int)
@@ -15,6 +15,14 @@ signal health_depleted
 var invincible_timer : Timer = null
 
 @export var is_player := false
+
+@onready var health_bar : ProgressBar = %Health
+
+func _ready():
+	set_health(max_health)
+	health_bar.max_value = max_health
+	health_bar.min_value = 0
+	health_bar.value = health
 
 #getter and setter for health
 func get_health() -> int:
@@ -35,10 +43,12 @@ func set_health(value : int):
 		#update health
 		health = clamped_health
 		#emit signal for the health changed with the amount of health changed
+		
+		health_bar.value = health
 		health_changed.emit(difference)
 	
 	#if health is 0 then emit that the health is now depleted
-	if health == 0:
+	if health <= 0:
 		health_depleted.emit()
 
 #getter and setter for max health
@@ -54,6 +64,8 @@ func set_max_health(value : int):
 		
 		if health > max_health:
 			health = max_health
+			
+			health_bar.value = health
 
 #getter and setter for invincibility
 func get_invincible() -> bool:

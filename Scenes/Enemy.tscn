@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cgn22jkyy1u3n"]
+[gd_scene load_steps=10 format=3 uid="uid://cgn22jkyy1u3n"]
 
 [ext_resource type="Script" uid="uid://c1vdplhkn8nb8" path="res://Scripts/Combat/Enemy/Enemy.gd" id="1_ahauh"]
 [ext_resource type="Script" uid="uid://c3d2myj2pwqfq" path="res://Scripts/Combat/Health.gd" id="1_x5orj"]
@@ -8,14 +8,28 @@
 [ext_resource type="Script" uid="uid://c6xpeycdfakql" path="res://Scripts/Combat/Enemy/Enemy_SM.gd" id="4_x7uyr"]
 [ext_resource type="Script" uid="uid://csqyj5cmgj58q" path="res://Scripts/Combat/Bullets/Shoot.gd" id="7_r243p"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6bs3c"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uoxpr"]
+bg_color = Color(1, 0, 0, 1)
+
 [node name="Enemy Body" type="CharacterBody2D" groups=["Enemies"]]
 collision_layer = 2
 collision_mask = 8
 script = ExtResource("1_ahauh")
 
-[node name="Health" type="Node" parent="."]
+[node name="Health" type="ProgressBar" parent="."]
 unique_name_in_owner = true
+offset_left = -18.0
+offset_top = -40.0
+offset_right = 18.0
+offset_bottom = -33.0
+theme_override_styles/background = SubResource("StyleBoxFlat_6bs3c")
+theme_override_styles/fill = SubResource("StyleBoxFlat_uoxpr")
+show_percentage = false
 script = ExtResource("1_x5orj")
+metadata/_custom_type_script = "uid://c3d2myj2pwqfq"
 
 [node name="Collision_Matcher" type="Node" parent="." node_paths=PackedStringArray("polygon_2d", "collision_polygons_to_update")]
 script = ExtResource("2_pbkhf")

@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://dm3fb7q6w4m3e"]
+[gd_scene load_steps=10 format=3 uid="uid://dm3fb7q6w4m3e"]
 
 [ext_resource type="Script" uid="uid://u2l8btuv8ovd" path="res://Scripts/Player/Player_Controller.gd" id="1_5oju5"]
+[ext_resource type="Theme" uid="uid://dwg4k5nghl8ls" path="res://Themes/TestTheme.tres" id="2_bhhdu"]
 [ext_resource type="Script" uid="uid://bxvnsi144darq" path="res://Scripts/Collision/CollisionMatcher.gd" id="2_ggnwl"]
 [ext_resource type="Script" uid="uid://csqyj5cmgj58q" path="res://Scripts/Combat/Bullets/Shoot.gd" id="3_7x1kn"]
 [ext_resource type="Script" uid="uid://c3d2myj2pwqfq" path="res://Scripts/Combat/Health.gd" id="4_8omlf"]
@@ -21,10 +22,18 @@ script = ExtResource("1_5oju5")
 speed = 250.0
 curve = SubResource("Curve_hdsdm")
 
-[node name="Health" type="Node" parent="."]
+[node name="Health" type="ProgressBar" parent="."]
 unique_name_in_owner = true
+offset_left = -18.0
+offset_top = -37.0
+offset_right = 18.0
+offset_bottom = -28.0
+theme = ExtResource("2_bhhdu")
+max_value = 1.0
+value = 0.88
+show_percentage = false
 script = ExtResource("4_8omlf")
-is_player = true
+metadata/_custom_type_script = "uid://c3d2myj2pwqfq"
 
 [node name="Dash" type="Node" parent="."]
 unique_name_in_owner = true
