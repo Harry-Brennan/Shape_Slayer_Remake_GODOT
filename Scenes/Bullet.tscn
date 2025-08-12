@@ -24,7 +24,7 @@ script = ExtResource("3_aech6")
 polygon = PackedVector2Array(0, -10, 27, 0, 0, 10, -10, 0)
 
 [node name="BulletCollision" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(0, -11, 11, 0, 0, 11, -11, 0)
+polygon = PackedVector2Array(0, -11, 29.7, 0, 0, 11, -11, 0)
 
 [node name="Bullet Hitbox" type="Area2D" parent="."]
 collision_layer = 4
@@ -33,6 +33,6 @@ script = ExtResource("4_lk63g")
 damage = 50
 
 [node name="Bullet Hitbox Collision" type="CollisionPolygon2D" parent="Bullet Hitbox"]
-polygon = PackedVector2Array(0, -11, 11, 0, 0, 11, -11, 0)
+polygon = PackedVector2Array(0, -11, 29.7, 0, 0, 11, -11, 0)
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

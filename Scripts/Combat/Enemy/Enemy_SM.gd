@@ -8,7 +8,7 @@ var current_state : enemy_states
 var chasing_attacking_turning_speed = -4
 
 @export var chase_range := 650.0
-@export var can_shoot := false
+@onready var can_shoot : bool = get_parent().enemys_info.b_shoot
 @export var shoot_range := 250.0
 @onready var shoot_ref := %Shoot
 var required_shooting_angle_percentage : float = 0.65
@@ -37,7 +37,7 @@ func _ready():
 
 
 func _process(delta):
-	#print(wander_position)
+	#print(current_state)
 	if active:
 		match current_state:
 			0:
@@ -91,10 +91,10 @@ func chasing_loop():
 	var direction : Vector2 =  player_ref.global_position - parent_ref.global_position
 	if (parent_ref.global_position - player_ref.global_position).length() < 10:
 		return
-	
-	if (parent_ref.global_position - player_ref.global_position).length() < shoot_range:
-		enter_state(enemy_states["Attacking"])
-		return
+	if can_shoot:
+		if (parent_ref.global_position - player_ref.global_position).length() < shoot_range:
+			enter_state(enemy_states["Attacking"])
+			return
 	parent_ref.global_rotation = lerp_angle(parent_ref.global_rotation, atan2(direction.y,direction.x), 1.0 - exp(chasing_attacking_turning_speed * get_physics_process_delta_time()))
 	
 	parent_ref.velocity = Vector2(1, 0).rotated(parent_ref.global_rotation) * enemy_speed * ( 1.0 - exp(-10 * get_physics_process_delta_time()))
@@ -102,9 +102,7 @@ func chasing_loop():
 	
 
 func attacking_loop():
-	if !can_shoot:#!b_shoot:
-		enter_state(enemy_states["Chasing"])
-		return
+	
 	var direction : Vector2 =  player_ref.global_position - parent_ref.global_position
 	parent_ref.global_rotation = lerp_angle(parent_ref.global_rotation, atan2(direction.y,direction.x), 1.0 - exp(chasing_attacking_turning_speed * get_physics_process_delta_time()))
 	
@@ -117,7 +115,7 @@ func attacking_loop():
 	
 	parent_ref.move_and_slide()
 	#print(parent_ref.global_rotation - atan2(direction.y, direction.x))
-	if (parent_ref.global_rotation - atan2(direction.y, direction.x)) < required_shooting_angle_percentage:
+	if (parent_ref.global_rotation - atan2(direction.y, direction.x)) < required_shooting_angle_percentage and can_shoot:
 		shoot_ref.shoot()
 
 

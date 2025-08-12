@@ -11,6 +11,9 @@ var life_duration_timer : Timer
 var homing_update_target_timer : Timer
 var homing_update_target_interval : float = 1
 var homing_target : Node
+var homing_turn_speed : float = -5
+var homing_range : float = 750
+var homing_angle : float = 0.95
 
 func _ready():
 	
@@ -44,8 +47,8 @@ func _physics_process(delta):
 			if (homing_target == null):
 				Bullet_Parent.position += Bullet_Parent.transform.x * speed * delta
 				return
-			if ((homing_target.global_position - Bullet_Parent.position).length() > 750):
-				if ((Bullet_Parent.rotation - atan2((homing_target.global_position.y - Bullet_Parent.global_position.y), (homing_target.global_position.x - Bullet_Parent.global_position.x))) < 0.95):
+			if ((homing_target.global_position - Bullet_Parent.position).length() > homing_range):
+				if ((Bullet_Parent.rotation - atan2((homing_target.global_position.y - Bullet_Parent.global_position.y), (homing_target.global_position.x - Bullet_Parent.global_position.x))) < homing_angle):
 					Bullet_Parent.position += Bullet_Parent.transform.x * speed * delta
 					return
 				else:
@@ -55,7 +58,7 @@ func _physics_process(delta):
 				
 			#look_at(#playerposition)
 				var direction : Vector2 = homing_target.global_position - Bullet_Parent.global_position
-				Bullet_Parent.global_rotation = lerp_angle(Bullet_Parent.global_rotation, atan2(direction.y,direction.x), 1.0 - exp(-5 * get_physics_process_delta_time()))
+				Bullet_Parent.global_rotation = lerp_angle(Bullet_Parent.global_rotation, atan2(direction.y,direction.x), 1.0 - exp(homing_turn_speed * get_physics_process_delta_time()))
 				Bullet_Parent.position += Bullet_Parent.transform.x * speed * delta
 			#print("homing movement preset")
 			
@@ -67,7 +70,7 @@ func update_homing_target():
 		var all_enemies : Array[Node] = get_tree().get_nodes_in_group("Enemies")
 		var closest_enemy : Node
 		for i in all_enemies:
-			if closest_enemy == null:
+			if i == all_enemies[0]:
 				closest_enemy = i
 			else:
 				if (closest_enemy.global_position - get_parent().global_position) > i.global_position - get_parent().global_position:

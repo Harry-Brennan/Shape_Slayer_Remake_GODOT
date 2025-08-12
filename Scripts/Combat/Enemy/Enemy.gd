@@ -1,23 +1,19 @@
 class_name Enemy
 extends CharacterBody2D
 
-var contact_damage : float
-var b_shoot : bool
-var shoot_range : float
-var move_speed : float
-var shoot_damage : int
+
+var enemys_info : Enemy_Info
+
+signal enemy_health_depleted
 
 const enemy_scene : PackedScene = preload("res://Scenes/Enemy.tscn")
 #test 
-static func new_enemy(contact_dmg : float, can_shoot : bool, shoot_range : float, move_speed : float, shoot_damage : int) -> Enemy:
+static func new_enemy(passed_enemy_info : Enemy_Info) -> Enemy:
 	var new_enemy := enemy_scene.instantiate()
-	new_enemy.contact_damage = contact_dmg
-	new_enemy.b_shot = can_shoot
-	new_enemy.shoot_range = shoot_range
-	new_enemy.move_speed = move_speed
-	new_enemy.shoot_damage = shoot_damage
+	new_enemy.enemys_info = passed_enemy_info
 
 	return new_enemy
 
 func _on_health_health_depleted():
+	enemy_health_depleted.emit()
 	queue_free()

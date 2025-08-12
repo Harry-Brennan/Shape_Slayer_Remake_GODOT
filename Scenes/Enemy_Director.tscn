@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://doptbladuh60b"]
+
+[ext_resource type="Script" uid="uid://dkgu0l1gk6kmg" path="res://Enemy_Director.gd" id="1_iabj4"]
+
+[node name="Enemy_Director" type="Node"]
+script = ExtResource("1_iabj4")
+starting_ranges = Array[Vector2]([Vector2(0, 0), Vector2(0, 0)])
+metadata/_custom_type_script = "uid://dkgu0l1gk6kmg"
+
+[node name="Spawning Timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[connection signal="timeout" from="Spawning Timer" to="." method="spawn_new_enemy"]
